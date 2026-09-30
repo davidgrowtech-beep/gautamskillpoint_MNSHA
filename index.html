@@ -307,14 +307,14 @@ src="https://www.facebook.com/tr?id=853117244491176&ev=PageView&noscript=1"
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ============================================================
-     META PIXEL — Lead event, fired once per real user click
+     META PIXEL — Subscribe event, fired once per real user click
      - sessionStorage dedup: never double-fire in the same session
      - isTrusted check: ignores synthetic/bot-dispatched clicks
      - dwell-time + human-interaction gate: ignores instant/bot clicks
      - fires from the actual click handler, then redirects
      (visitor is always redirected — only the pixel event is gated)
      ============================================================ */
-  var FIRED_KEY = 'lwg_Lead_fired_v1';
+  var FIRED_KEY = 'lwg_Subscribe_fired_v1';
   var MIN_DWELL_MS = 1200;
   var pageLoadTime = Date.now();
 
@@ -352,7 +352,7 @@ src="https://www.facebook.com/tr?id=853117244491176&ev=PageView&noscript=1"
     var looksGenuine = dwellOk && hadHumanInteraction && document.visibilityState !== 'hidden';
 
     if (looksGenuine && !hasFiredThisSession() && typeof fbq === 'function') {
-      fbq('track', 'Lead', {
+      fbq('track', 'Subscribe', {
         content_name: 'Learn with Gautam - Telegram Channel',
         cta_location: btn.getAttribute('data-cta') || 'unknown'
       }, { eventID: genuineClickId() });
